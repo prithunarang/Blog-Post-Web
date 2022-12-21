@@ -1,0 +1,52 @@
+<%- include("partials/header"); -%>
+
+<h1>Home</h1>
+
+<p> <%= homepara %> </p>
+ <center><h2>Featured Blogs</h2></center>
+<%  posts.forEach(function(post){ %>
+   <div class="Home">
+    <h1><%=post.title%></h1>
+    <p>
+    <%=post.content.substring(0, 100) + " ..."%>
+    <a href="/posts/<%=post._id%>">Read More</a>
+    </p>
+        <div class="btn-group">
+     <form action="/delete" method="post">
+        <button  type="submit" class="btn btn-outline-danger" value="<%=post._id%>" name="delete">Delete</button>
+       
+     </form>
+     
+     <a href="/update/<%=post._id%>">
+        <button  class="btn btn-outline-primary"  >  update </button>
+    </a>
+    </div>
+
+    
+      <div class="showoff">
+         <p><%=post.comment%> <br> </p>
+         <form action="/deletecomment" method="post">
+            <button  type="submit" class="btn btn-outline-danger" value="<%=post._id%>" name="deletecomment">Delete</button>
+           
+         </form>
+      </div>
+    
+    <form action="/comment" method="post">
+      <div class="form-group">
+         
+         <textarea class="comment" name="comment" rows="1" cols="100" maxlength="50" placeholder="Comment"></textarea>         <textarea class="comment" name="name" rows="1" cols="40" maxlength="50" placeholder="Name"></textarea><br>
+         <button type="submit" class="btn btn-outline-success" >Comment</button>
+         
+       </div>
+    </form>
+<hr>
+
+    </div>
+    <% }) %>
+
+
+   <br><br>
+
+
+
+<%- include("partials/footer"); -%>
